@@ -1,0 +1,57 @@
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM
+Message: Testing on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM
+Message: Testing on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM
+Message: Testing on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM
+Message: Testing on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM
+Message: Testing on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM -Kernel 
+Message: Training on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM -Kernel 
+Message: Training on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM -Kernel 1
+Message: Training on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM -Kernel 1
+Message: Training on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM -Kernel 1
+Message: Training on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM -Kernel 1
+Message: Training on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM -Kernel 1
+Message: Training on File ../data/data, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM -Kernel 1
+Message: Training on File ../data/data, 
+Bag label accuracy = 0.666667, Instance label accuracy = 0.675676, 
+
+Processing Filename: ../data/data
+Classifier:inst_MI_SVM -Kernel 1
+Message: Training on File ../data/data, 
