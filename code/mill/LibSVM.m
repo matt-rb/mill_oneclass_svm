@@ -1,6 +1,6 @@
 function  [Y_compute, Y_prob] = libSVM(para, X_train, Y_train, X_test, Y_test)
    
-global temp_train_file temp_test_file temp_output_file temp_model_file libSVM_dir svm_folder; 
+global temp_train_file temp_test_file temp_output_file temp_model_file libSVM_dir svm_folder svm_model; 
 
 num_class = 2;
 p = str2num(char(ParseParameter(para, {'-Kernel';'-KernelParam'; '-CostFactor'; '-NegativeWeight'; '-Threshold'}, {'2';'0.05';'1';'1';'0'})));
@@ -45,7 +45,8 @@ if (~isempty(X_train)),
     fclose(fid);
     % train the svm
     fprintf('Running: %s..................\n', train_cmd);
-    eval(train_cmd);
+    %eval(train_cmd);
+    svm_model = svmtrain(double(Y_train)',X_train, '-t 2 -b 0 -c 100 -s 2 -n 0.5');
 end;
 
 % Prediction
@@ -61,24 +62,32 @@ for i = 1:num_test_data,
 end
 fclose(fid);
 fprintf('Running: %s..................\n', test_cmd);
-eval(test_cmd);
+%eval(test_cmd);
 
-fid = fopen(temp_output_file, 'r');
+[predicted_label, accuracy, decision_value] = svmpredict (double(Y_test),X_test,svm_model) ;
 
-%% commented for one-class 
-%line = fgets(fid);
+likitmp = (decision_value - min(decision_value))/max(decision_value - min(decision_value));
 
-Y = fscanf(fid, '%f');
-fclose(fid);
+Y_compute = int16(predicted_label);
+Y_prob = likitmp;
 
-Y = (reshape(Y, num_class + 1, num_test_data))';
-Y_compute = int16(Y(:, 1));
-
-if isempty(strfind(line, 'labels 1 0'))
-    Y_prob = Y(:, 3);
-else
-    Y_prob = Y(:, 2);
-end
+%% one-class original
+% fid = fopen(temp_output_file, 'r');
+% 
+% %% commented for one-class 
+% %line = fgets(fid);
+% 
+% Y = fscanf(fid, '%f');
+% fclose(fid);
+% 
+% Y = (reshape(Y, num_class + 1, num_test_data))';
+% Y_compute = int16(Y(:, 1));
+% 
+% if isempty(strfind(line, 'labels 1 0'))
+%     Y_prob = Y(:, 3);
+% else
+%     Y_prob = Y(:, 2);
+% end
 
 
 
